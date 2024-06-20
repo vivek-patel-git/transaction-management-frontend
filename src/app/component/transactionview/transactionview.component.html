@@ -1,0 +1,86 @@
+<div class="container">
+  <!-- Heading row -->
+  <div class="row mb-3">
+    <div class="col-md-12 text-center">
+      <h2>Transaction Data</h2>
+    </div>
+  </div>
+
+  <!-- Create transaction button -->
+  <div class="row mb-3">
+    <div class="col-md-4 offset-md-4 text-center">
+      <a [routerLink]="['/transactions/create']" class="btn btn-sm btn-primary">Add transaction</a>
+    </div>
+  </div>
+
+  <!-- Filter row -->
+  <div class="row mb-3">
+    <!-- Status filter -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="statusSelect">Filter by Status:</label>
+        <select class="form-control" id="statusSelect" [(ngModel)]="selectedStatus" (change)="transactionsList()">
+          <option *ngFor="let status of statusArray" [value]="status.value">{{ status.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Start Date -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" (change)="transactionsList()">
+      </div>
+    </div>
+
+    <!-- End Date -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" (change)="transactionsList()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset button section -->
+  <div class="row mb-3">
+    <div class="col-md-4 offset-md-4 text-center">
+      <a href="#" class="btn btn-sm btn-secondary" (click)="resetFilters()">Reset Filters</a>
+    </div>
+  </div>
+
+  <!-- Table section -->
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Transaction ID</th>
+            <th>Timestamp</th>
+            <th>Sender</th>
+            <th>Recipient</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Comment</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions; index as i">
+            <td>{{ i+1 }}</td>
+            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.date | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td>{{ transaction.sender.firstName }} {{ transaction.sender.lastName }}</td>
+            <td>{{ transaction.recipient.firstName }} {{ transaction.recipient.lastName }}</td>
+            <td>{{ transaction.Amount }}</td>
+            <td>{{ transaction.status }}</td>
+            <td>{{ transaction.Comments }}</td>
+            <td><a [routerLink]="['/transaction', transaction.id]" class="btn btn-sm btn-primary">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+</div>

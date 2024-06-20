@@ -1,0 +1,72 @@
+<div style="text-align:center">
+  <h3>Create Transaction</h3>
+</div>
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <!-- Sender section -->
+  <div formGroupName="sender" class="form-section">
+    <h3>Sender</h3>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" formControlName="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" formControlName="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input type="date" id="dateOfBirth" formControlName="dateOfBirth" required>
+    </div>
+    <div class="form-group">
+      <label for="IDNumber">ID Number:</label>
+      <input type="number" id="IDNumber" formControlName="IDNumber" required>
+    </div>
+  </div>
+  
+  <!-- Recipient section -->
+  <div formGroupName="recipient" class="form-section">
+    <h3>Recipient</h3>
+    <div class="form-group">
+      <label for="recipientFirstName">First Name:</label>
+      <input type="text" id="recipientFirstName" formControlName="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="recipientLastName">Last Name:</label>
+      <input type="text" id="recipientLastName" formControlName="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" required>
+    </div>
+    <div class="form-group">
+      <label for="accountNumber">Account Number:</label>
+      <input type="text" id="accountNumber" formControlName="accountNumber" required>
+    </div>
+    <div class="form-group">
+      <label for="bank">Bank:</label>
+      <input type="text" id="bank" formControlName="bank" required>
+    </div>
+  </div>
+  
+  <!-- Amount and Currency section -->
+  <div class="form-section">
+    <div class="form-group">
+      <label for="Amount">Amount:</label>
+      <input type="number" id="Amount" formControlName="Amount" required>
+    </div>
+    <div class="form-group">
+      <label for="CurrencyCd">Currency Code:</label>
+      <input type="text" id="CurrencyCd" formControlName="CurrencyCd" required>
+    </div>
+  </div>
+  
+  <!-- Comments section -->
+  <div class="form-group">
+    <label for="Comments">Comments:</label>
+    <textarea id="Comments" formControlName="Comments"></textarea>
+  </div>
+  
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="button" class="btn btn-primary" (click)="cancel()" style="float:right;">Cancel</button>
+</form>

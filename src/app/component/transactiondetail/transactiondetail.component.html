@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2>Transaction Details</h2>
+      <div *ngIf="transaction" class="transaction-details">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th>Field</th>
+                <td>Requirements</td>
+              </tr>
+              <tr>
+                <th>ID</th>
+                <td>{{ transaction.id }}</td>
+              </tr>
+              <tr>
+                <th>Date</th>
+                <td>{{ transaction.date | date: 'yyyy-MM-dd HH:mm:ss' }}</td> <!-- Format the date -->
+              </tr>
+              <tr>
+                <th>Sender First Name</th>
+                <td>{{ transaction.sender.firstName }}</td>
+              </tr>
+              <tr>
+                <th>Sender Last Name</th>
+                <td>{{ transaction.sender.lastName }}</td>
+              </tr>
+              <tr>
+                <th>Sender Date of Birth</th>
+                <td>{{ transaction.sender.dateOfBirth | date: 'yyyy-MM-dd' }}</td> <!-- Format the date -->
+              </tr>
+              <tr>
+                <th>Sender ID Number</th>
+                <td>{{ transaction.sender.IDNumber }}</td>
+              </tr>
+              <tr>
+                <th>Recipient First Name</th>
+                <td>{{ transaction.recipient.firstName }}</td>
+              </tr>
+              <tr>
+                <th>Recipient Last Name</th>
+                <td>{{ transaction.recipient.lastName }}</td>
+              </tr>
+              <tr>
+                <th>Recipient Email</th>
+                <td>{{ transaction.recipient.email }}</td>
+              </tr>
+              <tr>
+                <th>Recipient Account Number</th>
+                <td>{{ transaction.recipient.accountNumber }}</td>
+              </tr>
+              <tr>
+                <th>Recipient Bank</th>
+                <td>{{ transaction.recipient.bank }}</td>
+              </tr>
+              <tr>
+                <th>Amount</th>
+                <td>{{ transaction.Amount }}</td>
+              </tr>
+              <tr>
+                <th>Currency Code</th>
+                <td>{{ transaction.CurrencyCd }}</td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <td>{{ transaction.status }}</td>
+              </tr>
+              <tr>
+                <th>Comments</th>
+                <td>
+                  <ng-container *ngIf="!edit; else editCommentTemplate">
+                    <span>{{ transaction.Comments }}</span>
+                    <button class="btn btn-sm btn-primary ml-2" (click)="editComment()">Edit</button>
+                  </ng-container>
+                  <ng-template #editCommentTemplate>
+                    <input type="text" [(ngModel)]="newComment" class="form-control" pattern="[a-zA-Z0-9\s]+" required>
+                    <div class="mt-2">
+                      <button class="btn btn-sm btn-success" (click)="saveComment()">Save</button>
+                      <button class="btn btn-sm btn-secondary ml-2" (click)="cancelEdit()">Cancel</button>
+                    </div>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div class="mt-3">
+        <button class="btn btn-primary" (click)="goBack()">Back to List</button>
+      </div>
+    </div>
+  </div>
+</div>
